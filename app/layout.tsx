@@ -5,17 +5,23 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "NovaCore AI Assistant",
+  title: {
+    default: "NovaCore AI Platform",
+    template: "%s | NovaCore AI Platform",
+  },
   description:
-    "An AI-powered business knowledge assistant that delivers accurate answers from your organization's knowledge base.",
+    "Enterprise Business Knowledge AI Platform powered by Retrieval-Augmented Generation.",
+  applicationName: "NovaCore AI Platform",
 };
 
 export default function RootLayout({
@@ -26,9 +32,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {children}
       </body>
     </html>
