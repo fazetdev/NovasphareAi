@@ -1,4 +1,4 @@
-export type ChatRole = "user" | "assistant";
+export type ChatRole = "user" | "assistant" | "system";
 
 export type MessageStatus =
   | "sending"
@@ -6,13 +6,19 @@ export type MessageStatus =
   | "sent"
   | "failed";
 
+export type ConversationFilter =
+  | "all"
+  | "pinned"
+  | "archived";
+
 export interface ChatMessage {
   id: string;
   conversationId: string;
   role: ChatRole;
   content: string;
   timestamp: string;
-  status?: MessageStatus;
+  status: MessageStatus;
+  edited?: boolean;
 }
 
 export interface ConversationSummary {
@@ -20,4 +26,7 @@ export interface ConversationSummary {
   title: string;
   lastMessage: string;
   updatedAt: string;
+  unreadCount?: number;
+  pinned?: boolean;
+  archived?: boolean;
 }

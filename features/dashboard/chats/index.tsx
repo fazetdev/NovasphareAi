@@ -1,10 +1,12 @@
 "use client";
 
 import { ChatLayout } from "./components/layout/ChatLayout";
-import { ConversationList } from "./components/conversation-list/ConversationList";
-import { ConversationListHeader } from "./components/conversation-list/ConversationListHeader";
 import { ChatWindow } from "./components/chat-window/ChatWindow";
 import { ChatComposer } from "./components/composer/ChatComposer";
+import { ConversationFilters } from "./components/conversation-list/ConversationFilters";
+import { ConversationList } from "./components/conversation-list/ConversationList";
+import { ConversationListHeader } from "./components/conversation-list/ConversationListHeader";
+import { ConversationSearch } from "./components/conversation-list/ConversationSearch";
 import { useChatUIState } from "./hooks/useChatUIState";
 
 export default function Chats() {
@@ -12,34 +14,77 @@ export default function Chats() {
     conversations,
     messages,
     activeConversationId,
-    setActiveConversationId,
+    search,
+    setSearch,
+    filter,
+    setFilter,
+    composerValue,
+    setComposerValue,
     sendMessage,
+    createConversation,
+    selectConversation,
+    renameConversation,
+    deleteConversation,
+    togglePinConversation,
+    archiveConversation,
+    isNewChat,
+    isTyping,
   } = useChatUIState();
 
-  const activeConversation =
-    conversations.find(
-      (c) => c.id === activeConversationId
-    );
+  const activeConversation = conversations.find(
+    (conversation) => conversation.id === activeConversationId
+  );
 
   return (
     <ChatLayout
-      sidebar={
+      sidebar={(closeSidebar) => (
         <div className="flex h-full flex-col">
-          <ConversationListHeader />
+          <ConversationListHeader
+            onNewChat={() => {
+              createConversation();
+              closeSidebar();
+            }}
+            actions={
+              <ConversationSearch
+                value={search}
+                onChange={setSearch}
+              />
+            }
+          />
+
+          <ConversationFilters
+            value={filter}
+            onChange={setFilter}
+          />
 
           <ConversationList
             conversations={conversations}
             activeConversationId={activeConversationId}
-            onSelect={setActiveConversationId}
+            onSelect={(id) => {
+              selectConversation(id);
+              closeSidebar();
+            }}
+            onRename={renameConversation}
+            onDelete={deleteConversation}
+            onPin={togglePinConversation}
+            onArchive={archiveConversation}
           />
         </div>
-      }
+      )}
       chat={
         <ChatWindow
-          title={activeConversation?.title ?? "Chat"}
+          title={
+            isNewChat
+              ? "New Chat"
+              : activeConversation?.title ?? "Chat"
+          }
           messages={messages}
+          isTyping={isTyping}
+          onSuggestionSelect={setComposerValue}
           composer={
             <ChatComposer
+              value={composerValue}
+              onChange={setComposerValue}
               onSend={sendMessage}
             />
           }
