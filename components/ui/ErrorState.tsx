@@ -1,38 +1,58 @@
-import { AlertTriangle } from "lucide-react";
+import type { ReactNode } from "react"
+import { AlertTriangle, type LucideIcon } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
 
 interface ErrorStateProps {
-  title: string;
-  description: string;
-  onRetry?: () => void;
+  title: string
+  description: string
+  onRetry?: () => void
+  retryLabel?: string
+  icon?: LucideIcon
+  action?: ReactNode
 }
 
 export function ErrorState({
   title,
   description,
   onRetry,
+  retryLabel = "Retry",
+  icon: Icon = AlertTriangle,
+  action,
 }: ErrorStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-red-200 bg-red-50 p-10 text-center">
+    <div
+      className="flex min-h-[280px] flex-col items-center justify-center rounded-xl border px-6 py-12 text-center"
+      role="alert"
+      aria-live="assertive"
+    >
+      <Icon
+        className="mb-4 h-10 w-10 text-destructive"
+        aria-hidden="true"
+      />
 
-      <AlertTriangle className="mb-4 h-10 w-10 text-red-600" />
-
-      <h3 className="text-lg font-semibold text-red-700">
+      <h3 className="text-lg font-semibold">
         {title}
       </h3>
 
-      <p className="mt-2 max-w-md text-sm text-red-600">
+      <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
         {description}
       </p>
 
-      {onRetry && (
-        <button
-          onClick={onRetry}
-          className="mt-6 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
-        >
-          Retry
-        </button>
+      {action ? (
+        <div className="mt-6">
+          {action}
+        </div>
+      ) : (
+        onRetry && (
+          <Button
+            className="mt-6"
+            onClick={onRetry}
+          >
+            {retryLabel}
+          </Button>
+        )
       )}
-
     </div>
-  );
+  )
 }

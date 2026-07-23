@@ -1,11 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import type { UploadItem, UploadStatus } from "../types/upload"
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+import type { UploadItem } from "../types/upload"
+import { uploadFile } from "../services/upload-service"
 
 export function useUploadManager() {
   const [items, setItems] = useState<UploadItem[]>([])
@@ -17,35 +15,65 @@ export function useUploadManager() {
       id,
       file,
       progress: 0,
-      status: "uploading",
+      status: "validating",
     }
 
     setItems((prev) => [...prev, newItem])
 
-    // Simulated upload progression (frontend-only)
-    for (let p = 10; p <= 100; p += 10) {
-      await sleep(120)
+    try {
+      setItems((prev) =>
+        prev.map((item) =>
+          item.id === id
+            ? { ...item, status: "uploading" }
+            : item
+        )
+      )
+
+      const status = await uploadFile(file, {
+        onProgress(progress) {
+          setItems((prev) =>
+            prev.map((item) =>
+              item.id === id
+                ? {
+                    ...item,
+                    progress,
+                  }
+                : item
+            )
+          )
+        },
+      })
 
       setItems((prev) =>
         prev.map((item) =>
           item.id === id
-            ? { ...item, progress: p }
+            ? {
+                ...item,
+                status,
+              }
             : item
         )
       )
-    }
 
-    // Simulate final state
-    const finalStatus: UploadStatus =
-      Math.random() > 0.2 ? "success" : "error"
-
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, status: finalStatus }
-          : item
+      return status
+    } catch (error) {
+      setItems((prev) =>
+        prev.map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                status: "error",
+                error:
+                  error instanceof Error
+                    ? error.message
+                    : "Upload failed.",
+              }
+            : item
+        )
       )
-    )
+
+      return "error"
+    }
   }
 
   return {

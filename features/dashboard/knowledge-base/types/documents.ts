@@ -1,4 +1,7 @@
-export type DocumentStatus = "processing" | "ready" | "failed"
+export type DocumentStatus =
+  | "processing"
+  | "ready"
+  | "failed"
 
 export type Document = {
   id: string
@@ -7,4 +10,5 @@ export type Document = {
   size: number
   status: DocumentStatus
   createdAt: string
+  archived: boolean
 }
