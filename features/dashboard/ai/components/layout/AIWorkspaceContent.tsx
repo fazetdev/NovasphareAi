@@ -5,6 +5,7 @@ import { ErrorState } from "@/components/ui/ErrorState"
 
 import { useAIWorkspace } from "../../hooks"
 
+import { AIConfigurationSection } from "../configuration/AIConfigurationSection"
 import { AIWorkspaceHeader } from "../header/AIWorkspaceHeader"
 import { AIModelsSection } from "../models/AIModelsSection"
 import { AIOverviewSection } from "../overview/AIOverviewSection"
@@ -65,6 +66,10 @@ export function AIWorkspaceContent() {
 
           <AIModelsSection
             models={models}
+          />
+
+          <AIConfigurationSection
+            configuration={configuration}
           />
         </>
       )}

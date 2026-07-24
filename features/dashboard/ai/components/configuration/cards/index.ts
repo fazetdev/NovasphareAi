@@ -1,0 +1,1 @@
+export { AIInferenceSettingsCard } from "./AIInferenceSettingsCard"
