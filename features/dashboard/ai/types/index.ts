@@ -1,5 +1,29 @@
-export * from "./capability"
-export * from "./provider"
-export * from "./model"
-export * from "./inference-config"
-export * from "./playground"
+export type {
+  AICapability,
+  AICapabilityStatus,
+  AICapabilityType,
+} from "./capability"
+
+export type {
+  AIProvider,
+  AIProviderAuthType,
+  AIProviderLimits,
+  AIProviderStatus,
+} from "./provider"
+
+export type {
+  AIModel,
+  AIModelStatus,
+  AIModelType,
+} from "./model"
+
+export type {
+  AIConfigurationScope,
+  AIInferenceConfiguration,
+  AIInferenceParameters,
+} from "./inference-config"
+
+export type {
+  AIPlaygroundRequest,
+  AIPlaygroundResponse,
+} from "./playground"

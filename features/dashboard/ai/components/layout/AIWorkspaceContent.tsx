@@ -5,10 +5,14 @@ import { ErrorState } from "@/components/ui/ErrorState"
 
 import { useAIWorkspace } from "../../hooks"
 
+import { AIAnalyticsSection } from "../analytics"
+import { AIComparisonSection } from "../comparison"
 import { AIConfigurationSection } from "../configuration/AIConfigurationSection"
+import { AIEnterpriseSection } from "../enterprise/AIEnterpriseSection"
 import { AIWorkspaceHeader } from "../header/AIWorkspaceHeader"
 import { AIModelsSection } from "../models/AIModelsSection"
 import { AIOverviewSection } from "../overview/AIOverviewSection"
+import { AIPlaygroundSection } from "../playground/AIPlaygroundSection"
 import { AIProvidersSection } from "../providers/AIProvidersSection"
 import { AIWorkspaceEmptyState } from "../shared/AIWorkspaceEmptyState"
 import { AIWorkspaceSkeleton } from "../skeletons/AIWorkspaceSkeleton"
@@ -60,17 +64,21 @@ export function AIWorkspaceContent() {
             configuration={configuration}
           />
 
-          <AIProvidersSection
-            providers={providers}
-          />
+          <AIProvidersSection providers={providers} />
 
-          <AIModelsSection
-            models={models}
-          />
+          <AIModelsSection models={models} />
 
           <AIConfigurationSection
             configuration={configuration}
           />
+
+          <AIPlaygroundSection />
+
+          <AIComparisonSection />
+
+          <AIAnalyticsSection />
+
+          <AIEnterpriseSection />
         </>
       )}
     </PageContainer>

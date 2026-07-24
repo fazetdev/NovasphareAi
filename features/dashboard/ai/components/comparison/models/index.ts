@@ -1,0 +1,1 @@
+export { AIComparisonModelCard } from "./AIComparisonModelCard"

@@ -1,24 +1,32 @@
-import type {
-  AIModel,
-  AIProvider,
-  AIInferenceConfiguration,
-  PlaygroundSession,
-} from "../types"
+export interface AIServiceResponse<T> {
+  data: T
+  success: boolean
+  error?: string
+}
 
-export interface AIService {
-  getProviders(): Promise<AIProvider[]>
+export const aiService = {
+  async getWorkspace(): Promise<AIServiceResponse<unknown>> {
+    return {
+      data: null,
+      success: true,
+    }
+  },
 
-  getModels(): Promise<AIModel[]>
+  async executePrompt(
+    _payload: unknown,
+  ): Promise<AIServiceResponse<unknown>> {
+    return {
+      data: null,
+      success: true,
+    }
+  },
 
-  getWorkspaceConfiguration(): Promise<AIInferenceConfiguration>
-
-  saveWorkspaceConfiguration(
-    configuration: AIInferenceConfiguration
-  ): Promise<AIInferenceConfiguration>
-
-  getPlaygroundSessions(): Promise<PlaygroundSession[]>
-
-  createPlaygroundSession(
-    session: PlaygroundSession
-  ): Promise<PlaygroundSession>
+  async compareModels(
+    _payload: unknown,
+  ): Promise<AIServiceResponse<unknown>> {
+    return {
+      data: null,
+      success: true,
+    }
+  },
 }
