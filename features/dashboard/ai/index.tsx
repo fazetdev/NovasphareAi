@@ -1,5 +1,5 @@
-import { AIWorkspaceView } from "./components/ai-workspace-view"
+import { AIWorkspaceContent } from "./components/layout/AIWorkspaceContent"
 
 export function AIFeature() {
-  return <AIWorkspaceView />
+  return <AIWorkspaceContent />
 }

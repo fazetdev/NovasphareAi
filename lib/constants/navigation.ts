@@ -10,6 +10,7 @@ export const marketingNav: NavItem[] = [
 ]
 
 export const dashboardNav: NavItem[] = [
+  { label: "AI", href: "/dashboard/ai" },
   { label: "Chats", href: "/dashboard/chats" },
   { label: "Knowledge Base", href: "/dashboard/knowledge-base" },
   { label: "Branding", href: "/dashboard/branding" },
