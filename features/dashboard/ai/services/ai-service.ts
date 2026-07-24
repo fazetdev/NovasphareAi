@@ -1,11 +1,22 @@
-export interface AIServiceResponse<T> {
-  data: T
-  success: boolean
-  error?: string
+import type {
+  AIInferenceConfiguration,
+  AIModel,
+  AIProvider,
+} from "../types"
+
+export interface AIService {
+  getProviders(): Promise<AIProvider[]>
+  getModels(): Promise<AIModel[]>
+
+  getWorkspaceConfiguration(): Promise<AIInferenceConfiguration>
+
+  saveWorkspaceConfiguration(
+    configuration: AIInferenceConfiguration,
+  ): Promise<AIInferenceConfiguration>
 }
 
 export const aiService = {
-  async getWorkspace(): Promise<AIServiceResponse<unknown>> {
+  async getWorkspace() {
     return {
       data: null,
       success: true,
@@ -13,8 +24,10 @@ export const aiService = {
   },
 
   async executePrompt(
-    _payload: unknown,
-  ): Promise<AIServiceResponse<unknown>> {
+    payload: unknown,
+  ) {
+    void payload
+
     return {
       data: null,
       success: true,
@@ -22,8 +35,10 @@ export const aiService = {
   },
 
   async compareModels(
-    _payload: unknown,
-  ): Promise<AIServiceResponse<unknown>> {
+    payload: unknown,
+  ) {
+    void payload
+
     return {
       data: null,
       success: true,

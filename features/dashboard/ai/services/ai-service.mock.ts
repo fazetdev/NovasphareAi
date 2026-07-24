@@ -1,8 +1,7 @@
 import type {
+  AIInferenceConfiguration,
   AIModel,
   AIProvider,
-  AIInferenceConfiguration,
-  PlaygroundSession,
 } from "../types"
 
 import type { AIService } from "./ai-service"
@@ -29,8 +28,6 @@ const mockWorkspaceConfiguration: AIInferenceConfiguration = {
   updatedAt: new Date().toISOString(),
 }
 
-const mockPlaygroundSessions: PlaygroundSession[] = []
-
 export const aiMockService: AIService = {
   async getProviders() {
     return mockProviders
@@ -44,15 +41,9 @@ export const aiMockService: AIService = {
     return mockWorkspaceConfiguration
   },
 
-  async saveWorkspaceConfiguration(configuration) {
+  async saveWorkspaceConfiguration(
+    configuration: AIInferenceConfiguration,
+  ) {
     return configuration
-  },
-
-  async getPlaygroundSessions() {
-    return mockPlaygroundSessions
-  },
-
-  async createPlaygroundSession(session) {
-    return session
   },
 }

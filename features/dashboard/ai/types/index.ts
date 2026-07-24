@@ -13,8 +13,10 @@ export type {
 
 export type {
   AIModel,
+  AIModelCategory,
+  AIModelLatency,
+  AIModelPricing,
   AIModelStatus,
-  AIModelType,
 } from "./model"
 
 export type {
@@ -24,6 +26,8 @@ export type {
 } from "./inference-config"
 
 export type {
-  AIPlaygroundRequest,
-  AIPlaygroundResponse,
+  PlaygroundPrompt,
+  PlaygroundResult,
+  PlaygroundSession,
+  PlaygroundSessionStatus,
 } from "./playground"
