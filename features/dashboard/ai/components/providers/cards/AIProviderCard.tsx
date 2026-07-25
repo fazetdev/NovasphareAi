@@ -30,7 +30,22 @@ export function AIProviderCard({
 
       <div className="mt-4 space-y-3 text-sm">
         <p>
-          Provider ID: {provider.id}
+          Authentication: {provider.authType}
+        </p>
+
+        <p>
+          Connection:{" "}
+          {provider.health?.connectionStatus ?? "Unknown"}
+        </p>
+
+        <p>
+          Region:{" "}
+          {String(provider.metadata.region ?? "Unknown")}
+        </p>
+
+        <p>
+          Models Limit:{" "}
+          {provider.limits.maxModels ?? "Unlimited"}
         </p>
 
         <AIProviderCapabilities

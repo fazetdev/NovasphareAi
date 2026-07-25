@@ -16,25 +16,25 @@ export function AIModelsSection({
     <section className="flex flex-col gap-6">
       <div>
         <h2 className="text-xl font-semibold">
-          Models
+          Model Catalog
         </h2>
 
         <p className="text-sm text-muted-foreground">
-          Browse, compare, and manage AI models across all configured providers.
+          Browse, inspect, and manage AI models available across configured providers.
         </p>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
-          <AIModelList
-            models={models}
-          />
+          <AIModelList models={models} />
         </div>
 
-        {selectedModel && (
-          <AIModelDetails
-            model={selectedModel}
-          />
+        {selectedModel ? (
+          <AIModelDetails model={selectedModel} />
+        ) : (
+          <div className="rounded-lg border p-6 text-sm text-muted-foreground">
+            Select a model to view details.
+          </div>
         )}
       </div>
     </section>

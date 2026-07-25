@@ -15,47 +15,71 @@ export function AIOverviewSection({
   models,
   configuration,
 }: AIOverviewSectionProps) {
+  const activeProviders = providers.filter(
+    (provider) => provider.status === "active",
+  ).length
+
+  const activeModels = models.filter(
+    (model) => model.status === "active",
+  ).length
+
   return (
-    <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      <div className="rounded-lg border p-6">
+    <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <article className="rounded-lg border p-6">
         <p className="text-sm text-muted-foreground">
-          Providers
+          Active Providers
         </p>
 
-        <h2 className="mt-2 text-2xl font-bold">
-          {providers.length}
-        </h2>
-      </div>
-
-      <div className="rounded-lg border p-6">
-        <p className="text-sm text-muted-foreground">
-          Models
+        <p className="mt-2 text-3xl font-bold">
+          {activeProviders}
         </p>
 
-        <h2 className="mt-2 text-2xl font-bold">
-          {models.length}
-        </h2>
-      </div>
+        <p className="mt-1 text-xs text-muted-foreground">
+          {providers.length} configured
+        </p>
+      </article>
 
-      <div className="rounded-lg border p-6">
+      <article className="rounded-lg border p-6">
         <p className="text-sm text-muted-foreground">
-          Workspace Default
+          Active Models
         </p>
 
-        <h2 className="mt-2 text-base font-semibold">
-          {configuration?.name ?? "Not Configured"}
-        </h2>
-      </div>
-
-      <div className="rounded-lg border p-6">
-        <p className="text-sm text-muted-foreground">
-          Playground Sessions
+        <p className="mt-2 text-3xl font-bold">
+          {activeModels}
         </p>
 
-        <h2 className="mt-2 text-2xl font-bold">
-          0
-        </h2>
-      </div>
+        <p className="mt-1 text-xs text-muted-foreground">
+          {models.length} available
+        </p>
+      </article>
+
+      <article className="rounded-lg border p-6">
+        <p className="text-sm text-muted-foreground">
+          Configuration
+        </p>
+
+        <p className="mt-2 font-semibold">
+          {configuration?.name ?? "None"}
+        </p>
+
+        <p className="mt-1 text-xs text-muted-foreground">
+          {configuration?.scope ?? "Not configured"}
+        </p>
+      </article>
+
+      <article className="rounded-lg border p-6">
+        <p className="text-sm text-muted-foreground">
+          Workspace Status
+        </p>
+
+        <p className="mt-2 font-semibold">
+          {configuration ? "Ready" : "Pending"}
+        </p>
+
+        <p className="mt-1 text-xs text-muted-foreground">
+          AI workspace health
+        </p>
+      </article>
     </section>
   )
 }

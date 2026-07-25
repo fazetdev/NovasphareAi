@@ -1,9 +1,20 @@
-import { AIExecutionControls } from "./controls/AIExecutionControls"
-import { AIPromptEditor } from "./editor/AIPromptEditor"
-import { AIRunHistory } from "./history/AIRunHistory"
-import { AIResponseViewer } from "./response/AIResponseViewer"
+"use client"
+
+import { useAIPlayground } from "../../hooks"
+
+import { AIPlaygroundControls } from "./controls/AIPlaygroundControls"
+import { AIPlaygroundEditor } from "./editor/AIPlaygroundEditor"
+import { AIPlaygroundHistory } from "./history/AIPlaygroundHistory"
+import { AIPlaygroundResponse } from "./response/AIPlaygroundResponse"
 
 export function AIPlaygroundSection() {
+  const {
+    sessions,
+    selectedSession,
+    isLoading,
+    isExecuting,
+  } = useAIPlayground()
+
   return (
     <section className="flex flex-col gap-6">
       <div>
@@ -12,18 +23,28 @@ export function AIPlaygroundSection() {
         </h2>
 
         <p className="text-sm text-muted-foreground">
-          Test prompts, evaluate models, and inspect AI responses before deployment.
+          Test prompts, compare responses, and experiment with model settings.
         </p>
       </div>
 
-      <AIExecutionControls />
+      <AIPlaygroundControls
+        isExecuting={isExecuting}
+      />
 
       <div className="grid gap-6 xl:grid-cols-2">
-        <AIPromptEditor />
-        <AIResponseViewer />
+        <AIPlaygroundEditor
+          session={selectedSession}
+        />
+
+        <AIPlaygroundResponse
+          session={selectedSession}
+        />
       </div>
 
-      <AIRunHistory />
+      <AIPlaygroundHistory
+        sessions={sessions}
+        isLoading={isLoading}
+      />
     </section>
   )
 }

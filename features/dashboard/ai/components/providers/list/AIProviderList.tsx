@@ -1,5 +1,7 @@
 import type { AIProvider } from "../../../types"
 
+import { EmptyState } from "@/components/ui/EmptyState"
+
 import { AIProviderCard } from "../cards/AIProviderCard"
 
 interface AIProviderListProps {
@@ -11,9 +13,10 @@ export function AIProviderList({
 }: AIProviderListProps) {
   if (providers.length === 0) {
     return (
-      <div className="rounded-lg border p-6 text-sm text-muted-foreground">
-        No AI providers configured.
-      </div>
+      <EmptyState
+        title="No AI providers configured"
+        description="Connect an AI provider to start managing models and configurations."
+      />
     )
   }
 

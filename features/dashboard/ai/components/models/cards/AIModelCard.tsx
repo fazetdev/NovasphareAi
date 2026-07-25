@@ -26,10 +26,28 @@ export function AIModelCard({
       </div>
 
       <div className="mt-4 space-y-2 text-sm">
-        <p>Model ID: {model.id}</p>
-
-        <p className="text-muted-foreground">
+        <p>
           Provider: {model.providerId}
+        </p>
+
+        <p>
+          Category: {model.category}
+        </p>
+
+        <p>
+          Context: {model.specification.contextWindow}
+        </p>
+
+        <p>
+          Streaming:{" "}
+          {model.specification.supportsStreaming
+            ? "Supported"
+            : "No"}
+        </p>
+
+        <p>
+          Favourite:{" "}
+          {model.isFavorite ? "Yes" : "No"}
         </p>
       </div>
     </article>

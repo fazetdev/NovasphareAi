@@ -7,6 +7,8 @@ export type {
 export type {
   AIProvider,
   AIProviderAuthType,
+  AIProviderConnectionStatus,
+  AIProviderHealth,
   AIProviderLimits,
   AIProviderStatus,
 } from "./provider"
@@ -16,18 +18,29 @@ export type {
   AIModelCategory,
   AIModelLatency,
   AIModelPricing,
+  AIModelSpecification,
   AIModelStatus,
 } from "./model"
 
 export type {
+  AIConfigurationProfile,
   AIConfigurationScope,
+  AIConfigurationOverride,
   AIInferenceConfiguration,
   AIInferenceParameters,
 } from "./inference-config"
 
 export type {
+  PlaygroundMetrics,
   PlaygroundPrompt,
   PlaygroundResult,
   PlaygroundSession,
   PlaygroundSessionStatus,
 } from "./playground"
+
+export type {
+  AIAnalytics,
+  AIUsageMetrics,
+  AICostMetrics,
+  AIPerformanceMetrics,
+} from "./analytics"

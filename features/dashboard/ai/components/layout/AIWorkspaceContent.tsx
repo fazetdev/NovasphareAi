@@ -11,7 +11,11 @@ import { AIConfigurationSection } from "../configuration/AIConfigurationSection"
 import { AIEnterpriseSection } from "../enterprise/AIEnterpriseSection"
 import { AIWorkspaceHeader } from "../header/AIWorkspaceHeader"
 import { AIModelsSection } from "../models/AIModelsSection"
-import { AIOverviewSection } from "../overview/AIOverviewSection"
+import {
+  AIOverviewQuickActions,
+  AIOverviewSection,
+  AIWorkspaceHealth,
+} from "../overview"
 import { AIPlaygroundSection } from "../playground/AIPlaygroundSection"
 import { AIProvidersSection } from "../providers/AIProvidersSection"
 import { AIWorkspaceEmptyState } from "../shared/AIWorkspaceEmptyState"
@@ -64,9 +68,21 @@ export function AIWorkspaceContent() {
             configuration={configuration}
           />
 
-          <AIProvidersSection providers={providers} />
+          <div className="grid gap-6 xl:grid-cols-2">
+            <AIOverviewQuickActions />
 
-          <AIModelsSection models={models} />
+            <AIWorkspaceHealth
+              providers={providers}
+            />
+          </div>
+
+          <AIProvidersSection
+            providers={providers}
+          />
+
+          <AIModelsSection
+            models={models}
+          />
 
           <AIConfigurationSection
             configuration={configuration}
@@ -74,7 +90,9 @@ export function AIWorkspaceContent() {
 
           <AIPlaygroundSection />
 
-          <AIComparisonSection />
+          <AIComparisonSection
+            models={models}
+          />
 
           <AIAnalyticsSection />
 

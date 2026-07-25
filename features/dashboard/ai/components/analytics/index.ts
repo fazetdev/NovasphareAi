@@ -1,6 +1,11 @@
 export { AIAnalyticsSection } from "./AIAnalyticsSection"
 
-export { AIUsageMetrics } from "./usage"
-export { AICostMetrics } from "./cost"
-export { AIUsageTrendChart } from "./charts"
-export { AICostTrendChart } from "./charts"
+export { AIAnalyticsSummaryCard } from "./cards/AIAnalyticsSummaryCard"
+
+export { AIUsageMetricsCard } from "./usage/AIUsageMetricsCard"
+export { AICostMetricsCard } from "./cost/AICostMetricsCard"
+export { AIPerformanceMetricsCard } from "./performance/AIPerformanceMetricsCard"
+
+export { AIUsageTrendChart } from "./charts/AIUsageTrendChart"
+export { AICostTrendChart } from "./charts/AICostTrendChart"
+export { AIPerformanceTrendChart } from "./charts/AIPerformanceTrendChart"

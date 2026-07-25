@@ -1,5 +1,7 @@
 import type { AIModel } from "../../../types"
 
+import { EmptyState } from "@/components/ui/EmptyState"
+
 import { AIModelCard } from "../cards/AIModelCard"
 
 interface AIModelListProps {
@@ -11,9 +13,10 @@ export function AIModelList({
 }: AIModelListProps) {
   if (models.length === 0) {
     return (
-      <div className="rounded-lg border p-6 text-sm text-muted-foreground">
-        No AI models available.
-      </div>
+      <EmptyState
+        title="No AI models available"
+        description="Models will appear here once providers are configured."
+      />
     )
   }
 

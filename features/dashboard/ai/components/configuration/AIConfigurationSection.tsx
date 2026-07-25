@@ -6,10 +6,14 @@ import { AIConfigurationForm } from "./forms/AIConfigurationForm"
 
 interface AIConfigurationSectionProps {
   configuration: AIInferenceConfiguration | null
+  onSave?: () => void
+  isSaving?: boolean
 }
 
 export function AIConfigurationSection({
   configuration,
+  onSave,
+  isSaving,
 }: AIConfigurationSectionProps) {
   return (
     <section className="flex flex-col gap-6">
@@ -33,7 +37,10 @@ export function AIConfigurationSection({
         />
       </div>
 
-      <AIConfigurationActions />
+      <AIConfigurationActions
+        onSave={onSave}
+        isSaving={isSaving}
+      />
     </section>
   )
 }
