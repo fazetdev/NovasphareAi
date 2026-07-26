@@ -1,0 +1,3 @@
+export {
+  AutomationWorkspaceContent,
+} from "./AutomationWorkspaceContent"

@@ -13,6 +13,8 @@ export const dashboardNav: NavItem[] = [
   { label: "AI", href: "/dashboard/ai" },
   { label: "Chats", href: "/dashboard/chats" },
   { label: "Knowledge Base", href: "/dashboard/knowledge-base" },
+  { label: "Automation", href: "/dashboard/automation" },
+  { label: "Automation", href: "/dashboard/automation" },
   { label: "Branding", href: "/dashboard/branding" },
   { label: "Settings", href: "/dashboard/settings" },
   { label: "Account", href: "/dashboard/account" },
