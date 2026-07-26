@@ -1,0 +1,1 @@
+export { ContactsWorkspaceContent } from "./ContactsWorkspaceContent"

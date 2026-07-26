@@ -44,3 +44,9 @@ export type {
   AICostMetrics,
   AIPerformanceMetrics,
 } from "./analytics"
+
+export type {
+  AIAuditLog,
+  AISecurityConfiguration,
+  AIEnterpriseConfiguration,
+} from "./enterprise"

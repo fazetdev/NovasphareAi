@@ -1,6 +1,7 @@
 import type {
   AIAnalytics,
   AIConfigurationProfile,
+  AIEnterpriseConfiguration,
   AIInferenceConfiguration,
   AIModel,
   AIProvider,
@@ -70,6 +71,31 @@ const mockAnalytics: AIAnalytics = {
   generatedAt: now,
 }
 
+const mockEnterpriseConfiguration: AIEnterpriseConfiguration = {
+  workspaceId: "workspace-main",
+
+  security: {
+    encryptionEnabled: true,
+    auditLoggingEnabled: true,
+    dataRetentionDays: 90,
+    metadata: {},
+  },
+
+  auditLogs: [
+    {
+      id: "audit-001",
+      action: "model.configuration.updated",
+      actor: "admin",
+      resource: "workspace-default",
+      timestamp: now,
+      metadata: {},
+    },
+  ],
+
+  createdAt: now,
+  updatedAt: now,
+}
+
 const mockConfigurationProfiles: AIConfigurationProfile[] = []
 
 const mockPlaygroundSessions: PlaygroundSession[] = []
@@ -109,5 +135,9 @@ export const aiMockService: AIService = {
 
   async getAnalytics() {
     return mockAnalytics
+  },
+
+  async getEnterpriseConfiguration() {
+    return mockEnterpriseConfiguration
   },
 }

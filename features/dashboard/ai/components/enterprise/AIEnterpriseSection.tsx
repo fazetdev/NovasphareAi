@@ -1,30 +1,68 @@
-import { AIAccessControl } from "./access/AIAccessControl"
-import { AIAuditLogs } from "./audit/AIAuditLogs"
-import { AIEnvironmentManagement } from "./environments/AIEnvironmentManagement"
-import { AISecuritySettings } from "./security/AISecuritySettings"
+"use client"
+
+import { useAIEnterprise } from "../../hooks"
+
+import {
+  AIAuditLogsCard,
+  AISecurityConfigurationCard,
+} from "."
 
 export function AIEnterpriseSection() {
+  const {
+    enterprise,
+    isLoading,
+    error,
+  } = useAIEnterprise()
+
+  if (isLoading) {
+    return (
+      <section className="rounded-lg border p-6">
+        <p className="text-sm text-muted-foreground">
+          Loading enterprise configuration...
+        </p>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="rounded-lg border p-6">
+        <p className="text-sm text-destructive">
+          {error}
+        </p>
+      </section>
+    )
+  }
+
+  if (!enterprise) {
+    return (
+      <section className="rounded-lg border p-6">
+        <p className="text-sm text-muted-foreground">
+          No enterprise configuration available.
+        </p>
+      </section>
+    )
+  }
+
   return (
     <section className="flex flex-col gap-6">
       <div>
         <h2 className="text-xl font-semibold">
-          Enterprise Management
+          Enterprise
         </h2>
 
         <p className="text-sm text-muted-foreground">
-          Manage security, access control, environments, and audit activity.
+          Manage security, governance, and workspace auditing.
         </p>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-2">
-        <AISecuritySettings />
+      <AISecurityConfigurationCard
+        security={enterprise.security}
+      />
 
-        <AIAccessControl />
-
-        <AIAuditLogs />
-
-        <AIEnvironmentManagement />
-      </div>
+      <AIAuditLogsCard
+        logs={enterprise.auditLogs}
+      />
     </section>
   )
 }

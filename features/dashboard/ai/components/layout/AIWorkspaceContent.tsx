@@ -55,7 +55,7 @@ export function AIWorkspaceContent() {
     !configuration
 
   return (
-    <PageContainer className="flex flex-col gap-6">
+    <PageContainer className="flex flex-col gap-4 sm:gap-6">
       <AIWorkspaceHeader />
 
       {isEmpty ? (
@@ -68,7 +68,7 @@ export function AIWorkspaceContent() {
             configuration={configuration}
           />
 
-          <div className="grid gap-6 xl:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 xl:grid-cols-2">
             <AIOverviewQuickActions />
 
             <AIWorkspaceHealth

@@ -1,6 +1,7 @@
 import type {
   AIAnalytics,
   AIConfigurationProfile,
+  AIEnterpriseConfiguration,
   AIInferenceConfiguration,
   AIModel,
   AIProvider,
@@ -42,6 +43,8 @@ export interface AIService {
   ): Promise<PlaygroundSession>
 
   getAnalytics(): Promise<AIAnalytics>
+
+  getEnterpriseConfiguration(): Promise<AIEnterpriseConfiguration>
 }
 
 export const aiService = {
