@@ -1,3 +1,7 @@
 export {
-  AutomationWorkspaceContent,
-} from "./AutomationWorkspaceContent"
+  AutomationResponsiveLayout,
+} from "./AutomationResponsiveLayout"
+
+export {
+  AutomationSection,
+} from "./AutomationSection"

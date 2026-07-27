@@ -1,21 +1,31 @@
-export * from "./triggers"
-export * from "./actions"
-export * from "./registry"
+export {
+  automationService,
+} from "./automation-service"
+
+export {
+  automationMockService,
+} from "./automation-service.mock"
+
 export * from "./catalog"
-export * from "./validation"
-export * from "./versioning"
-export * from "./testing"
+
 export * from "./execution"
+
+export * from "./validation"
+
+export * from "./testing"
+
+export * from "./triggers"
+
+export * from "./actions"
+
+export * from "./registry"
+
+export * from "./versioning"
+
 export * from "./core"
 
-export {
-  automationService as automationMockService,
-} from "./core"
+export * from "./analytics"
 
-export {
-  automationAnalyticsMockService,
-} from "./analytics"
+export * from "./settings"
 
-export {
-  automationSettingsMockService,
-} from "./settings"
+export * from "./enterprise"

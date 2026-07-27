@@ -41,3 +41,7 @@ export {
 export {
   useAutomationSettings,
 } from "./useAutomationSettings"
+
+export {
+  useAutomationEnterprise,
+} from "./useAutomationEnterprise"
