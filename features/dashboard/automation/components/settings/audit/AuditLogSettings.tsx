@@ -1,10 +1,14 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 export function AuditLogSettings() {
+  const t = useTranslations()
+
   return (
     <div className="space-y-4 rounded-md border p-4">
       <h3 className="font-medium">
-        Audit Log Settings
+        {t.automation.auditLogSettings}
       </h3>
 
       <div className="space-y-3">
@@ -13,7 +17,7 @@ export function AuditLogSettings() {
             type="checkbox"
             defaultChecked
           />
-          Enable workflow activity tracking
+          {t.automation.logWorkflowExecutions}
         </label>
 
         <label className="flex items-center gap-2 text-sm">
@@ -21,14 +25,14 @@ export function AuditLogSettings() {
             type="checkbox"
             defaultChecked
           />
-          Track permission changes
+          {t.automation.logConfigurationChanges}
         </label>
 
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
           />
-          Store execution history permanently
+          {t.automation.retainAuditLogs}
         </label>
       </div>
     </div>

@@ -1,43 +1,44 @@
 "use client"
 
-const activities = [
-  {
-    title: "Workflow created",
-    time: "No recent activity",
-  },
-  {
-    title: "Workflow executed",
-    time: "No recent activity",
-  },
-  {
-    title: "Workflow completed",
-    time: "No recent activity",
-  },
-]
+import { useTranslations } from "@/lib/i18n/hooks"
 
 export function WorkflowActivityTimeline() {
+  const t = useTranslations()
+
+  const activities = [
+    {
+      id: 1,
+      title: t.automation.workflowHealth,
+      status: t.automation.healthy,
+    },
+    {
+      id: 2,
+      title: t.automation.failedExecutions,
+      status: t.automation.noIssuesDetected,
+    },
+    {
+      id: 3,
+      title: t.automation.executionDelays,
+      status: t.automation.noDelays,
+    },
+  ]
+
   return (
-    <div className="space-y-4 rounded-md border p-4">
-      <h3 className="font-medium">
-        Workflow Activity
-      </h3>
+    <div className="space-y-3 rounded-md border p-4">
+      {activities.map((activity) => (
+        <div
+          key={activity.id}
+          className="flex items-center justify-between rounded-md border p-3"
+        >
+          <span className="text-sm">
+            {activity.title}
+          </span>
 
-      <div className="space-y-3">
-        {activities.map((activity) => (
-          <div
-            key={activity.title}
-            className="border-l pl-4"
-          >
-            <div className="text-sm font-medium">
-              {activity.title}
-            </div>
-
-            <div className="text-xs text-muted-foreground">
-              {activity.time}
-            </div>
-          </div>
-        ))}
-      </div>
+          <span className="text-sm text-muted-foreground">
+            {activity.status}
+          </span>
+        </div>
+      ))}
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { useDirection, useTranslations } from "@/lib/i18n/hooks"
 import { cn } from "@/lib/utils"
 import { isActiveRoute } from "@/lib/utils/routes"
 import type { NavItem } from "@/lib/constants/navigation"
@@ -12,11 +13,27 @@ type NavProps = {
   className?: string
 }
 
+function getTranslation(
+  translations: Record<string, string>,
+  key: string,
+) {
+  return translations[key] ?? key
+}
+
 export function Nav({ items, className }: NavProps) {
   const pathname = usePathname()
+  const direction = useDirection()
+  const t = useTranslations()
 
   return (
-    <nav className={cn("flex items-center gap-6", className)}>
+    <nav
+      dir={direction}
+      className={cn(
+        "flex items-center gap-6",
+        direction === "rtl" && "flex-row-reverse",
+        className
+      )}
+    >
       {items.map((item) => {
         const active = isActiveRoute(pathname, item.href)
 
@@ -27,11 +44,11 @@ export function Nav({ items, className }: NavProps) {
             className={cn(
               "text-sm transition-colors",
               active
-                ? "text-foreground font-medium"
+                ? "font-medium text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
-            {item.label}
+            {getTranslation(t.navigation, item.labelKey)}
           </Link>
         )
       })}

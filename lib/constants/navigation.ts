@@ -1,21 +1,24 @@
 export type NavItem = {
-  label: string
+  labelKey: string
   href: string
 }
 
 export const marketingNav: NavItem[] = [
-  { label: "Features", href: "/features" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
+  { labelKey: "features", href: "/features" },
+  { labelKey: "faq", href: "/faq" },
+  { labelKey: "contact", href: "/contact" },
 ]
 
 export const dashboardNav: NavItem[] = [
-  { label: "AI", href: "/dashboard/ai" },
-  { label: "Chats", href: "/dashboard/chats" },
-  { label: "Knowledge Base", href: "/dashboard/knowledge-base" },
-  { label: "Automation", href: "/dashboard/automation" },
-  { label: "Analytics", href: "/dashboard/analytics" },
-  { label: "Branding", href: "/dashboard/branding" },
-  { label: "Settings", href: "/dashboard/settings" },
-  { label: "Account", href: "/dashboard/account" },
+  { labelKey: "ai", href: "/dashboard/ai" },
+  { labelKey: "chats", href: "/dashboard/chats" },
+  {
+    labelKey: "knowledgeBase",
+    href: "/dashboard/knowledge-base",
+  },
+  { labelKey: "automation", href: "/dashboard/automation" },
+  { labelKey: "analytics", href: "/dashboard/analytics" },
+  { labelKey: "branding", href: "/dashboard/branding" },
+  { labelKey: "settings", href: "/dashboard/settings" },
+  { labelKey: "account", href: "/dashboard/account" },
 ]

@@ -9,6 +9,8 @@ import { ConversationListHeader } from "./components/conversation-list/Conversat
 import { ConversationSearch } from "./components/conversation-list/ConversationSearch";
 import { useChatUIState } from "./hooks/useChatUIState";
 
+import { useTranslations } from "@/lib/i18n/hooks";
+
 export default function Chats() {
   const {
     conversations,
@@ -30,6 +32,8 @@ export default function Chats() {
     isNewChat,
     isTyping,
   } = useChatUIState();
+
+  const t = useTranslations();
 
   const activeConversation = conversations.find(
     (conversation) => conversation.id === activeConversationId
@@ -75,8 +79,8 @@ export default function Chats() {
         <ChatWindow
           title={
             isNewChat
-              ? "New Chat"
-              : activeConversation?.title ?? "Chat"
+              ? t.chat.newChat
+              : activeConversation?.title ?? t.chat.title
           }
           messages={messages}
           isTyping={isTyping}

@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 import {
   useAutomationAnalytics,
 } from "../../hooks/useAutomationAnalytics"
@@ -29,6 +31,8 @@ import {
 } from "./alerts/MonitoringAlerts"
 
 export function AutomationAnalytics() {
+  const t = useTranslations()
+
   const {
     executions,
     workflowCount,
@@ -38,11 +42,11 @@ export function AutomationAnalytics() {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-semibold">
-          Automation Analytics
+          {t.automation.analyticsTitle}
         </h2>
 
         <p className="text-sm text-muted-foreground">
-          Monitor workflow performance and execution health.
+          {t.automation.analyticsDescription}
         </p>
       </div>
 
@@ -59,9 +63,9 @@ export function AutomationAnalytics() {
       <MonitoringAlerts />
 
       <div className="text-sm text-muted-foreground">
-        Workflows: {workflowCount}
+        {t.automation.workflows}: {workflowCount}
         {" | "}
-        Executions: {executions.length}
+        {t.automation.executions}: {executions.length}
       </div>
     </div>
   )

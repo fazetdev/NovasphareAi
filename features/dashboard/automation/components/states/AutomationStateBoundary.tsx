@@ -1,41 +1,54 @@
 "use client"
 
-import type { PropsWithChildren } from "react"
+import { ReactNode } from "react"
 
-import { AutomationEmpty } from "./AutomationEmpty"
+import { EmptyState } from "@/components/ui/EmptyState"
+import { useTranslations } from "@/lib/i18n/hooks"
+
 import { AutomationError } from "./AutomationError"
 import { AutomationLoading } from "./AutomationLoading"
 
-interface AutomationStateBoundaryProps
-  extends PropsWithChildren {
+type AutomationStateBoundaryProps = {
   loading?: boolean
-  error?: string | null
-  empty?: boolean
+  error?: boolean
+  errorMessage?: string
+  isEmpty?: boolean
+  children: ReactNode
   emptyTitle?: string
   emptyDescription?: string
 }
 
 export function AutomationStateBoundary({
   loading = false,
-  error,
-  empty = false,
-  emptyTitle = "Nothing found",
-  emptyDescription = "No data available.",
+  error = false,
+  errorMessage,
+  isEmpty = false,
   children,
+  emptyTitle,
+  emptyDescription,
 }: AutomationStateBoundaryProps) {
+  const t = useTranslations()
+
   if (loading) {
     return <AutomationLoading />
   }
 
   if (error) {
-    return <AutomationError message={error} />
+    return (
+      <AutomationError
+        message={errorMessage ?? t.common.emptyDescription}
+      />
+    )
   }
 
-  if (empty) {
+  if (isEmpty) {
     return (
-      <AutomationEmpty
-        title={emptyTitle}
-        description={emptyDescription}
+      <EmptyState
+        title={emptyTitle ?? t.common.emptyTitle}
+        description={
+          emptyDescription ??
+          t.common.emptyDescription
+        }
       />
     )
   }

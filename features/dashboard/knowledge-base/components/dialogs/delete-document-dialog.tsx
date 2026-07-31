@@ -35,8 +35,9 @@ export function DeleteDocumentDialog({
           </DialogTitle>
 
           <DialogDescription>
-            Are you sure you want to delete {documentName}?
-            This action cannot be undone.
+            Are you sure you want to delete{" "}
+            {documentName}? This action cannot
+            be undone.
           </DialogDescription>
         </DialogHeader>
 

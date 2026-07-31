@@ -1,44 +1,41 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 export function WorkspaceConfiguration() {
+  const t = useTranslations()
+
   return (
     <div className="space-y-4 rounded-md border p-4">
       <h3 className="font-medium">
-        Workspace Configuration
+        {t.automation.workspaceConfiguration}
       </h3>
 
       <div className="space-y-3">
         <div>
           <label className="text-sm">
-            Workspace Name
+            {t.automation.workspaceName}
           </label>
 
           <input
             className="mt-1 w-full rounded-md border p-2 text-sm"
-            placeholder="Automation Workspace"
+            placeholder={
+              t.automation.workspaceNamePlaceholder
+            }
           />
         </div>
 
         <div>
           <label className="text-sm">
-            Default Environment
+            {t.automation.workspaceDescription}
           </label>
 
-          <select
+          <input
             className="mt-1 w-full rounded-md border p-2 text-sm"
-          >
-            <option>
-              Production
-            </option>
-
-            <option>
-              Testing
-            </option>
-
-            <option>
-              Development
-            </option>
-          </select>
+            placeholder={
+              t.automation.workspaceDescriptionPlaceholder
+            }
+          />
         </div>
       </div>
     </div>

@@ -4,90 +4,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  color-scheme: light;
+/* ---------- Direction Foundation ---------- */
 
-  --background: oklch(0.99 0.003 260);
-  --foreground: oklch(0.21 0.01 260);
-
-  --card: oklch(1 0 0);
-  --card-foreground: var(--foreground);
-
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--foreground);
-
-  --primary: oklch(0.58 0.18 258);
-  --primary-foreground: oklch(0.99 0 0);
-
-  --secondary: oklch(0.96 0.004 260);
-  --secondary-foreground: var(--foreground);
-
-  --muted: oklch(0.97 0.003 260);
-  --muted-foreground: oklch(0.52 0.01 260);
-
-  --accent: oklch(0.95 0.01 258);
-  --accent-foreground: var(--foreground);
-
-  --destructive: oklch(0.62 0.23 28);
-
-  --border: oklch(0.91 0.004 260);
-  --input: var(--border);
-  --ring: var(--primary);
-
-  --radius: 0.75rem;
-
-  --chart-1: oklch(0.58 0.18 258);
-  --chart-2: oklch(0.68 0.15 185);
-  --chart-3: oklch(0.72 0.16 145);
-  --chart-4: oklch(0.74 0.17 80);
-  --chart-5: oklch(0.67 0.19 20);
-
-  --sidebar: oklch(0.985 0.003 260);
-  --sidebar-foreground: var(--foreground);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
+html {
+  min-height: 100%;
 }
 
-.dark {
-  color-scheme: dark;
-
-  --background: oklch(0.18 0.01 260);
-  --foreground: oklch(0.96 0.003 260);
-
-  --card: oklch(0.22 0.01 260);
-  --card-foreground: var(--foreground);
-
-  --popover: var(--card);
-  --popover-foreground: var(--foreground);
-
-  --primary: oklch(0.72 0.16 258);
-  --primary-foreground: oklch(0.18 0.01 260);
-
-  --secondary: oklch(0.28 0.01 260);
-  --secondary-foreground: var(--foreground);
-
-  --muted: oklch(0.28 0.01 260);
-  --muted-foreground: oklch(0.72 0.01 260);
-
-  --accent: oklch(0.30 0.01 260);
-  --accent-foreground: var(--foreground);
-
-  --destructive: oklch(0.68 0.21 28);
-
-  --border: oklch(0.30 0.01 260);
-  --input: var(--border);
-  --ring: var(--primary);
-
-  --sidebar: oklch(0.21 0.01 260);
-  --sidebar-foreground: var(--foreground);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
+
+:dir(rtl),
+:dir(ltr) {
+  unicode-bidi: plaintext;
+}
+
+/* Prevent media distortion in both directions */
+
+img,
+svg,
+video,
+canvas {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+/* ---------- Theme ---------- */

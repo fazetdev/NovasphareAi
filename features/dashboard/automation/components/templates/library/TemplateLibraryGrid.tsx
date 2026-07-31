@@ -1,24 +1,28 @@
 "use client"
 
-const templates = [
-  {
-    id: "lead-follow-up",
-    name: "Lead Follow-up",
-    category: "Sales",
-  },
-  {
-    id: "ticket-routing",
-    name: "Support Ticket Routing",
-    category: "Support",
-  },
-  {
-    id: "employee-onboarding",
-    name: "Employee Onboarding",
-    category: "HR",
-  },
-]
+import { useTranslations } from "@/lib/i18n/hooks"
 
 export function TemplateLibraryGrid() {
+  const t = useTranslations()
+
+  const templates = [
+    {
+      id: "lead-follow-up",
+      name: t.automation.leadFollowUp,
+      category: t.automation.sales,
+    },
+    {
+      id: "ticket-routing",
+      name: t.automation.supportTicketRouting,
+      category: t.automation.support,
+    },
+    {
+      id: "employee-onboarding",
+      name: t.automation.employeeOnboarding,
+      category: t.automation.hr,
+    },
+  ]
+
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {templates.map((template) => (

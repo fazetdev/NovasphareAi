@@ -1,21 +1,28 @@
 "use client"
 
-const settings = [
-  {
-    title: "Workflow Permissions",
-    description: "Control access to automation workflows.",
-  },
-  {
-    title: "Execution Policies",
-    description: "Manage workflow execution rules.",
-  },
-  {
-    title: "Notifications",
-    description: "Configure automation alerts.",
-  },
-]
+import { useTranslations } from "@/lib/i18n/hooks"
 
 export function SettingsOverview() {
+  const t = useTranslations()
+
+  const settings = [
+    {
+      title: t.automation.workflowPermissions,
+      description:
+        t.automation.workflowPermissionsDescription,
+    },
+    {
+      title: t.automation.executionPolicies,
+      description:
+        t.automation.executionPoliciesDescription,
+    },
+    {
+      title: t.automation.notifications,
+      description:
+        t.automation.notificationsDescription,
+    },
+  ]
+
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {settings.map((item) => (

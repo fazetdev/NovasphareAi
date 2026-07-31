@@ -16,7 +16,7 @@ export function ErrorState({
   title,
   description,
   onRetry,
-  retryLabel = "Retry",
+  retryLabel,
   icon: Icon = AlertTriangle,
   action,
 }: ErrorStateProps) {
@@ -44,7 +44,8 @@ export function ErrorState({
           {action}
         </div>
       ) : (
-        onRetry && (
+        onRetry &&
+        retryLabel && (
           <Button
             className="mt-6"
             onClick={onRetry}

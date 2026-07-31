@@ -4,6 +4,10 @@ import { ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import {
+  useDirection,
+  useTranslations,
+} from "@/lib/i18n/hooks"
 import { cn } from "@/lib/utils"
 import { dashboardNav } from "@/lib/constants/navigation"
 
@@ -12,21 +16,35 @@ type DashboardShellProps = {
   className?: string
 }
 
+function getTranslation(
+  translations: Record<string, string>,
+  key: string,
+) {
+  return translations[key] ?? key
+}
+
 export function DashboardShell({
   children,
   className,
 }: DashboardShellProps) {
   const pathname = usePathname()
+  const direction = useDirection()
+  const t = useTranslations()
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      {/* Sidebar */}
-      <aside className="hidden md:flex w-64 border-r border-border flex-col">
-        <div className="h-14 flex items-center px-4 border-b border-border font-semibold text-sm">
-          NovaCore Admin
+    <div
+      dir={direction}
+      className={cn(
+        "min-h-screen flex bg-background text-foreground",
+        direction === "rtl" && "flex-row-reverse"
+      )}
+    >
+      <aside className="hidden w-64 flex-col border-e border-border md:flex">
+        <div className="h-14 border-b border-border px-4 flex items-center text-sm font-semibold">
+          {t.common.appName}
         </div>
 
-        <nav className="flex-1 p-3 space-y-1">
+        <nav className="flex-1 space-y-1 p-3">
           {dashboardNav.map((item) => {
             const active = pathname.startsWith(item.href)
 
@@ -37,19 +55,18 @@ export function DashboardShell({
                 className={cn(
                   "block rounded-md px-3 py-2 text-sm transition-colors",
                   active
-                    ? "bg-muted text-foreground font-medium"
+                    ? "bg-muted font-medium text-foreground"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
-                {item.label}
+                {getTranslation(t.navigation, item.labelKey)}
               </Link>
             )
           })}
         </nav>
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-1 flex-col">
         <main className={cn("flex-1", className)}>
           {children}
         </main>

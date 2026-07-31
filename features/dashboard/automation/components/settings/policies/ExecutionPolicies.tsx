@@ -1,28 +1,32 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 export function ExecutionPolicies() {
+  const t = useTranslations()
+
   return (
     <div className="space-y-4 rounded-md border p-4">
       <h3 className="font-medium">
-        Execution Policies
+        {t.automation.executionPolicies}
       </h3>
 
       <div className="space-y-3">
         <div>
           <label className="text-sm">
-            Maximum Retries
+            {t.automation.maxConcurrentExecutions}
           </label>
 
           <input
             type="number"
-            defaultValue={3}
+            defaultValue={5}
             className="mt-1 w-full rounded-md border p-2 text-sm"
           />
         </div>
 
         <div>
           <label className="text-sm">
-            Execution Timeout (seconds)
+            {t.automation.executionTimeout}
           </label>
 
           <input
@@ -37,7 +41,7 @@ export function ExecutionPolicies() {
             type="checkbox"
             defaultChecked
           />
-          Continue workflow on step failure
+          {t.automation.allowAutomaticRetries}
         </label>
       </div>
     </div>

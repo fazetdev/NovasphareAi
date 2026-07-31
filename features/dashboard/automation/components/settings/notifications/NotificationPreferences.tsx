@@ -1,10 +1,14 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 export function NotificationPreferences() {
+  const t = useTranslations()
+
   return (
     <div className="space-y-4 rounded-md border p-4">
       <h3 className="font-medium">
-        Notification Preferences
+        {t.automation.notifications}
       </h3>
 
       <div className="space-y-3">
@@ -13,7 +17,7 @@ export function NotificationPreferences() {
             type="checkbox"
             defaultChecked
           />
-          Notify on failed executions
+          {t.automation.notifyWorkflowFailures}
         </label>
 
         <label className="flex items-center gap-2 text-sm">
@@ -21,14 +25,14 @@ export function NotificationPreferences() {
             type="checkbox"
             defaultChecked
           />
-          Notify when workflow completes
+          {t.automation.notifyExecutionSuccess}
         </label>
 
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
           />
-          Notify on execution delays
+          {t.automation.dailySummaryReports}
         </label>
       </div>
     </div>

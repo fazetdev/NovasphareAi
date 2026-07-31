@@ -1,41 +1,19 @@
 "use client"
 
-const statistics = [
-  {
-    label: "Total Executions",
-    value: "0",
-  },
-  {
-    label: "Running",
-    value: "0",
-  },
-  {
-    label: "Successful",
-    value: "0",
-  },
-  {
-    label: "Failed",
-    value: "0",
-  },
-]
+import { useTranslations } from "@/lib/i18n/hooks"
 
 export function ExecutionStatisticsCards() {
-  return (
-    <div className="grid gap-4 md:grid-cols-4">
-      {statistics.map((item) => (
-        <div
-          key={item.label}
-          className="rounded-md border p-4"
-        >
-          <div className="text-sm text-muted-foreground">
-            {item.label}
-          </div>
+  const t = useTranslations()
 
-          <div className="mt-2 text-2xl font-semibold">
-            {item.value}
-          </div>
-        </div>
-      ))}
+  return (
+    <div className="rounded-md border p-4">
+      <h3 className="font-medium">
+        {t.automation.failedExecutions}
+      </h3>
+
+      <p className="mt-2 text-sm text-muted-foreground">
+        {t.automation.noIssuesDetected}
+      </p>
     </div>
   )
 }

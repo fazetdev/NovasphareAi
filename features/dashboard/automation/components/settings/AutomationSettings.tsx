@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n/hooks"
+
 import {
   useAutomationSettings,
 } from "../../hooks/useAutomationSettings"
@@ -29,6 +31,8 @@ import {
 } from "./audit/AuditLogSettings"
 
 export function AutomationSettings() {
+  const t = useTranslations()
+
   const {
     settings,
   } = useAutomationSettings()
@@ -37,11 +41,11 @@ export function AutomationSettings() {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-semibold">
-          Automation Settings
+          {t.automation.settingsTitle}
         </h2>
 
         <p className="text-sm text-muted-foreground">
-          Manage workflow configuration and enterprise controls.
+          {t.automation.settingsDescription}
         </p>
       </div>
 
@@ -59,7 +63,7 @@ export function AutomationSettings() {
 
       {settings && (
         <div className="rounded-md border p-4 text-sm text-muted-foreground">
-          Settings loaded successfully.
+          {t.automation.settingsLoaded}
         </div>
       )}
     </div>

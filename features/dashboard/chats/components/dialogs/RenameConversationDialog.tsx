@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,14 +10,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { useTranslations } from "@/lib/i18n/hooks"
 
 interface RenameConversationDialogProps {
-  open: boolean;
-  initialValue: string;
-  onOpenChange: (open: boolean) => void;
-  onConfirm: (title: string) => void;
+  open: boolean
+  initialValue: string
+  onOpenChange: (open: boolean) => void
+  onConfirm: (title: string) => void
 }
 
 export function RenameConversationDialog({
@@ -26,46 +27,42 @@ export function RenameConversationDialog({
   onOpenChange,
   onConfirm,
 }: RenameConversationDialogProps) {
-  const [value, setValue] = useState(initialValue);
+  const t = useTranslations()
+  const [value, setValue] = useState(initialValue)
 
   useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue)
+  }, [initialValue])
 
   function handleSubmit() {
-    const title = value.trim();
+    const title = value.trim()
 
-    if (!title) return;
+    if (!title) return
 
-    onConfirm(title);
-    onOpenChange(false);
+    onConfirm(title)
+    onOpenChange(false)
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Rename Conversation
+            {t.chat.renameConversation}
           </DialogTitle>
 
           <DialogDescription>
-            Enter a new conversation name.
+            {t.chat.renameConversationDescription}
           </DialogDescription>
         </DialogHeader>
 
         <Input
           autoFocus
           value={value}
-          placeholder="Conversation title"
+          placeholder={t.chat.conversationTitle}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSubmit();
-            }
+            if (e.key === "Enter") handleSubmit()
           }}
         />
 
@@ -74,16 +71,14 @@ export function RenameConversationDialog({
             variant="outline"
             onClick={() => onOpenChange(false)}
           >
-            Cancel
+            {t.common.cancel}
           </Button>
 
-          <Button
-            onClick={handleSubmit}
-          >
-            Save
+          <Button onClick={handleSubmit}>
+            {t.common.save}
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

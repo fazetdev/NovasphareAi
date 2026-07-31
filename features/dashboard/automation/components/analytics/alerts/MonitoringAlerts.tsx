@@ -1,25 +1,29 @@
 "use client"
 
-const alerts = [
-  {
-    title: "Failed executions",
-    status: "No issues detected",
-  },
-  {
-    title: "Workflow health",
-    status: "Healthy",
-  },
-  {
-    title: "Execution delays",
-    status: "No delays",
-  },
-]
+import { useTranslations } from "@/lib/i18n/hooks"
 
 export function MonitoringAlerts() {
+  const t = useTranslations()
+
+  const alerts = [
+    {
+      title: t.automation.failedExecutions,
+      status: t.automation.noIssuesDetected,
+    },
+    {
+      title: t.automation.workflowHealth,
+      status: t.automation.healthy,
+    },
+    {
+      title: t.automation.executionDelays,
+      status: t.automation.noDelays,
+    },
+  ]
+
   return (
     <div className="space-y-3 rounded-md border p-4">
       <h3 className="font-medium">
-        Monitoring Status
+        {t.automation.monitoringStatus}
       </h3>
 
       {alerts.map((alert) => (
